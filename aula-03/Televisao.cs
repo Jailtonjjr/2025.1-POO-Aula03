@@ -1,91 +1,136 @@
 namespace aula_03;
-
+// separação virtual 
 public class Televisao
 {
-    //O método construtor possui o mesmo nome da classe. 
-    // Ele não possui retorno (nem mesmo o void)
-    //Este método é executado sempre que uma instancia da classe
-    //é criada.
-    //Por padrão, o C# cria um método construtor publico vazio,
-    //mas podemos criar métodos construtores com outras
-    //visibilidades e recebendo parametros, se necessário.
+    // o metodo construtr possui o mesmo
+    // nome da classe. ele nao possui retorno
+    // nem mesmo o void
+    // este metodo é executado sempre que uma 
+    // instancia da classe é criada
+    // por padrao, o c# cria um metodo construtor publico vazil
+    // mas podemos criar metodos construtores com outras
+    // visibilidades e recebendo paramentros, se necessario.
     public Televisao(float tamanho)
     {
         if (tamanho < TAMANHO_MINIMO || tamanho > TAMANHO_MAXIMO)
         {
-            throw new ArgumentOutOfRangeException($"O tamanho({tamanho}) não é suportado!");
+            // uma exceção interrompe o fluxo normal do sistema.
+            throw new ArgumentOutOfRangeException($"o tamanho ({tamanho})não é suportado.");
         }
         Tamanho = tamanho;
         Volume = VOLUME_PADRAO;
+        Canal = Canal_Padrao;
+        
+        
     }
-
-    //Optamos pela utilização da constante para tornar o código mais legível.
+    // optamos pela utilização da constante s
     private const float TAMANHO_MINIMO = 22;
     private const float TAMANHO_MAXIMO = 80;
-    private const int VOLUME_MAXIMO = 12;
+
+    private const int VOLUME_MAXIMO = 100;
     private const int VOLUME_MINIMO = 0;
     private const int VOLUME_PADRAO = 10;
 
-    private int _ultimoVolume = VOLUME_PADRAO;
+    private const int Canal_Minimo = 0;
+    private const int Canal_Padrao = 500;
+    private const int Canal_maximo = 999;
 
+    private  int UltimoCanal = -1;
+    private int ultimoVolume = VOLUME_PADRAO;
+    private bool ModoTroca = false;
+    
+    // Get, permite que seja executado a leitura
+    // do valor atual da propriedade
+    // Set, permite que seja atribuido um
+    // valor para propriedade
 
-
-    //Get: permite que seja executada a 
-    //leitura do valor atual da propriedade
-    //Set: permite que seja atibuído um 
-    //valor para a propriedade
-
-    //classes, propriedades e métodos possuem modificadores de acesso
-    //public: visiveis a todo o projeto
-    //internal: visiveis somente no namespace - padrão
-    //protected: visiveis somente na classe e nas classes que herdam
-    //private: visiveis somente na classe que foram criados
-    public float Tamanho { get; }
+    // classes, propriedade e metodos possuem modificadores de acesso
+    // eles são public:visiveis a todo o projeto
+    // internal: visivel somente no namespace
+    // protected: visiveis somente na classe e nas classses que herdam
+    // private: visivel somente na classe que foram criadas
+    public float Tamanho { get;  }
     public int Resolucao { get; set; }
     public int Volume { get; private set; }
-    public int Canal { get; set; }
+    public int Canal { get;  set; }
     public bool Estado { get; set; }
 
+    
     public void AumentarVolume()
     {
-        if (Volume < VOLUME_MAXIMO)
-        {
-            Volume++;
-            _ultimoVolume = Volume;
+        if(ModoTroca == true){
+            Console.WriteLine("A TV está no modo MUTE.");
         }
+        else if (Volume < VOLUME_MAXIMO){ 
+        Volume++;
+    }
         else
         {
-            Console.WriteLine("A TV já está no volume máximo permitido");
-        }
+            Console.WriteLine("A tv já está no volume maximo permitido");
+    }
     }
 
     public void DiminuirVolume()
     {
-        if (Volume > VOLUME_MINIMO)
-        {
-            Volume--;
-            _ultimoVolume = Volume;
-        }
-        else
-        {
-            Console.WriteLine("A TV já está no volume mínimo permitido");
-        }
-    }
-
-    //1 botao de mudo -  toggle (on/off)
-    //Volume = x; Volume = 0; Volume = x;
-    public void AlternarModoMudo()
-    {
-        if (Volume > VOLUME_MINIMO)
-        {
-            _ultimoVolume = Volume;
-            Volume = VOLUME_MINIMO;
+        if(ModoTroca == true){
             Console.WriteLine("A TV está no modo MUTE.");
         }
+        else if (Volume > VOLUME_MINIMO){ 
+        Volume--;
+    }
         else
         {
-            Volume = _ultimoVolume;
-            Console.WriteLine($"O volume da TV é: {Volume}.");
-        }
+            Console.WriteLine("A tv já está no volume minimo permitido");
     }
+
+
+    }
+    public void DigitarCanal(int canal)
+    {   
+        
+        if(canal < Canal_Minimo || canal > Canal_maximo){
+            Console.WriteLine($"Não foi possivel encontrar esse canal");
+        }
+        else
+        {
+            Console.WriteLine($"canal encontrado, você esta no canal {canal}");
+        }
+        UltimoCanal = canal;
+        Canal = UltimoCanal;
+    }
+    public void SubirCanal()
+    {   
+     
+        if(Canal >= Canal_Minimo && Canal <= Canal_maximo){
+            Canal++;
+            Console.WriteLine($"O canal é : {Canal}.");
+        }
+        UltimoCanal = Canal;
+    }
+    public void DescerCanal()
+    {  
+        
+        if(Canal <= Canal_maximo && Canal >= Canal_Minimo){
+            Canal--;
+            Console.WriteLine($"O canal é : {Canal}.");
+        }
+        UltimoCanal = Canal;
+    }
+    public void Silenciar()
+        {
+            ModoTroca = !ModoTroca;
+            if(ModoTroca ==true){
+                ultimoVolume = Volume;
+                Volume = VOLUME_MINIMO;
+                Console.WriteLine("Você colocou a TV está no modo MUTE.");
+            }
+            else{
+                Volume = ultimoVolume;
+                Console.WriteLine($"Você desmutou a TV, O volume da TV é : {Volume}.");
+
+            }
+
+        
+
+        }
 }

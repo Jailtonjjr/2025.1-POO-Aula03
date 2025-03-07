@@ -1,42 +1,40 @@
 ﻿using aula_03;
-
 // See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+// Console.WriteLine("Ola, mundo");
+// int idade = int.Parse(Console.ReadLine());
 
-Televisao tvSala = new Televisao(22f);
-Console.WriteLine($"O tamanho da tv é: {tvSala.Tamanho}");
+Televisao tvSala = new Televisao(22);
 
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-tvSala.AumentarVolume();
+// Televisao2 
 
-Console.WriteLine($"O tamanho da tv é: {tvSala.Tamanho}");
+// Console.WriteLine($"O tamanho da tv é: {tvSala.Tamanho}");
+// Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+// tvSala.AumentarVolume();
+// tvSala.AumentarVolume();
+// tvSala.AumentarVolume();
+// tvSala.AumentarVolume();
+// tvSala.AumentarVolume();
+// tvSala.AumentarVolume();
+// tvSala.AumentarVolume();
+// Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+// tvSala.DiminuirVolume();
+// tvSala.DiminuirVolume();
+// tvSala.DiminuirVolume();
+// tvSala.DiminuirVolume();
+// tvSala.DiminuirVolume();
+// Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+// tvSala.Silenciar();
+// Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+// tvSala.DiminuirVolume();
+// tvSala.Silenciar();
+// Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+// tvSala.AumentarVolume();
+// Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
+// tvSala.Silenciar();
+// tvSala.DescerCanal();
+// tvSala.DigitarCanal(540);
 
-
-tvSala.AumentarVolume();
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-tvSala.AumentarVolume();
-
-//Deveria imprimir mudo
-tvSala.AlternarModoMudo();
-
-//Deveria imprimir 01
-tvSala.AumentarVolume();
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-
-//Deveria imprimir mudo
-tvSala.AlternarModoMudo();
-
-//Deveria imprimir volume 01
-tvSala.AlternarModoMudo();
-
-tvSala.DiminuirVolume();
-Console.WriteLine($"O volume da tv é: {tvSala.Volume}");
-
-//Deveria imprimir volume 01
-tvSala.AlternarModoMudo();
-
-
-
-
-
+tvSala.SubirCanal();
+tvSala.DescerCanal();
+// tvSala.DescerCanal();
 
